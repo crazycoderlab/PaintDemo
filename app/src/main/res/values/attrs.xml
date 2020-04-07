@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="MyPaintDemoLinearLayout">
+        <attr name="inflateChildViewClassName" format="string"/>
+        <attr name="demoTypeName" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="StyleDemoView">
+        <attr name="styleType" format="integer">
+            <enum name="stroke" value="1"/>
+            <enum name="fill" value="2"/>
+            <enum name="fillStroke" value="3"/>
+        </attr>
+    </declare-styleable>
+
+</resources>

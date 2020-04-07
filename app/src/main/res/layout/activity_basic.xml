@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.example.paintdemo.MyPaintDemoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:inflateChildViewClassName="com.example.paintdemo.basecharacteristic.view.AntiAliasDemoView"
+            app:demoTypeName="抗锯齿"
+            />
+
+        <com.example.paintdemo.MyPaintDemoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:inflateChildViewClassName="com.example.paintdemo.basecharacteristic.view.MaskFilterDemoView"
+            app:demoTypeName="阴影效果——绘制内容上方"
+            />
+
+        <com.example.paintdemo.MyPaintDemoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:inflateChildViewClassName="com.example.paintdemo.basecharacteristic.view.PathEffectDemoView"
+            app:demoTypeName="绘制虚线"
+            />
+
+        <com.example.paintdemo.MyPaintDemoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:inflateChildViewClassName="com.example.paintdemo.basecharacteristic.view.ShadowLayerDemoView"
+            app:demoTypeName="阴影效果-绘制内容下方"
+            />
+
+        <com.example.paintdemo.MyPaintDemoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:demoTypeName="填充样式"
+            >
+
+            <com.example.paintdemo.basecharacteristic.view.StyleDemoView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+
+            <com.example.paintdemo.basecharacteristic.view.StyleDemoView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:styleType="stroke"/>
+
+            <com.example.paintdemo.basecharacteristic.view.StyleDemoView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:styleType="fill"/>
+
+            <com.example.paintdemo.basecharacteristic.view.StyleDemoView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:styleType="fillStroke"/>
+
+        </com.example.paintdemo.MyPaintDemoLinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
