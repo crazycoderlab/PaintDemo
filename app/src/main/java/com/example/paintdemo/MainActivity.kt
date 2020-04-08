@@ -8,6 +8,7 @@ import com.example.paintdemo.basecharacteristic.BasicCharacteristicActivity
 import com.example.paintdemo.bitmap.BitmapDemoActivity
 import com.example.paintdemo.color.ShaderDemoActivity
 import com.example.paintdemo.line.LineDemoActivity
+import com.example.paintdemo.overlap.OverlapDemoActivity
 import com.example.paintdemo.text.TextDemoActivity
 
 class MainActivity : AppCompatActivity() {
@@ -38,6 +39,11 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.main_bt5).setOnClickListener {
             val intent = Intent(this@MainActivity,BitmapDemoActivity::class.java)
+            startActivity(intent)
+        }
+
+        findViewById<Button>(R.id.main_bt6).setOnClickListener {
+            val intent = Intent(this@MainActivity,OverlapDemoActivity::class.java)
             startActivity(intent)
         }
 

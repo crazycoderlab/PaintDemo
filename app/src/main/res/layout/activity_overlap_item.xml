@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/overlap_item_name"
+        android:gravity="center"
+        android:text="设置着色器"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        />
+
+    <com.example.paintdemo.MyPaintDemoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/overlap_item_modeName"
+                android:gravity="center"
+                android:textSize="16sp"
+                />
+            <com.example.paintdemo.overlap.view.BlendModeDemoView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:id="@+id/overlap_item_blend"
+                />
+            <com.example.paintdemo.overlap.view.XfermodeDemoView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:id="@+id/overlap_item_xfer"
+                />
+        </LinearLayout>
+
+    </com.example.paintdemo.MyPaintDemoLinearLayout>
+
+</LinearLayout>

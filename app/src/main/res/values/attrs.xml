@@ -47,4 +47,8 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="BlendModeDemoView">
+        <attr name="blendMode" format="integer"/>
+    </declare-styleable>
+
 </resources>

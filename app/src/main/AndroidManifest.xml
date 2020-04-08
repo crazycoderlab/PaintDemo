@@ -32,6 +32,9 @@
         <activity android:name=".bitmap.BitmapDemoActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"/>
+        <activity android:name=".overlap.OverlapDemoActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"/>
     </application>
 
 </manifest>
