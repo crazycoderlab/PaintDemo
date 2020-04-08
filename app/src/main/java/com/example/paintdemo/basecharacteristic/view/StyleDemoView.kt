@@ -18,7 +18,7 @@ class StyleDemoView @JvmOverloads constructor(
 
     private var styleType: Int = 0
 
-    init {
+    override fun initSpecialConfig(attrs: AttributeSet?, defStyleAttr: Int) {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.StyleDemoView,defStyleAttr,0)
         styleType = typedArray.getInt(R.styleable.StyleDemoView_styleType,0)
         typedArray.recycle()

@@ -17,7 +17,7 @@ class MaskFilterDemoView @JvmOverloads constructor(
     isOpen: Boolean = false
 ) : BaseDrawActionView(context, attrs, defStyleAttr, isOpen) {
 
-    var bitmap: Bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources,R.drawable.img2),
+    private var bitmap: Bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources,R.drawable.img2),
         dpToPx(100f).toInt(),dpToPx(100f).toInt(),true)
 
     override fun openCharacteristic() {

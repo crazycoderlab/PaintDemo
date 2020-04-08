@@ -20,6 +20,9 @@
         <activity android:name=".basecharacteristic.BasicCharacteristicActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
+        <activity android:name=".line.LineDemoActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"/>
     </application>
 
 </manifest>

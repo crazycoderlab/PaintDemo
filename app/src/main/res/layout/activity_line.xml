@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="线头样式"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            />
+
+        <com.example.paintdemo.MyPaintDemoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="默认样式"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    />
+                <com.example.paintdemo.line.view.LineCapDemoView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    />
+            </LinearLayout>
+
+        </com.example.paintdemo.MyPaintDemoLinearLayout>
+
+        <com.example.paintdemo.MyPaintDemoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="BUTT：平头"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    />
+                <com.example.paintdemo.line.view.LineCapDemoView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    app:capStyle="BUTT"
+                    />
+            </LinearLayout>
+
+        </com.example.paintdemo.MyPaintDemoLinearLayout>
+
+        <com.example.paintdemo.MyPaintDemoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="ROUND：圆头"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    />
+                <com.example.paintdemo.line.view.LineCapDemoView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    app:capStyle="ROUND"
+                    />
+            </LinearLayout>
+
+        </com.example.paintdemo.MyPaintDemoLinearLayout>
+
+        <com.example.paintdemo.MyPaintDemoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="SQUARE：方头"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    />
+                <com.example.paintdemo.line.view.LineCapDemoView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    app:capStyle="SQUARE"
+                    />
+            </LinearLayout>
+
+        </com.example.paintdemo.MyPaintDemoLinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="线的拐角"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            />
+
+        <com.example.paintdemo.MyPaintDemoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="不设置Join"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    />
+                <com.example.paintdemo.line.view.LineJoinDemoView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    />
+            </LinearLayout>
+
+        </com.example.paintdemo.MyPaintDemoLinearLayout>
+
+        <com.example.paintdemo.MyPaintDemoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Join：MITER"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    />
+                <com.example.paintdemo.line.view.LineJoinDemoView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    app:joinStyle="MITER"
+                    />
+            </LinearLayout>
+
+        </com.example.paintdemo.MyPaintDemoLinearLayout>
+
+        <com.example.paintdemo.MyPaintDemoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Join：ROUND"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    />
+                <com.example.paintdemo.line.view.LineJoinDemoView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    app:joinStyle="ROUND"
+                    />
+            </LinearLayout>
+
+        </com.example.paintdemo.MyPaintDemoLinearLayout>
+
+        <com.example.paintdemo.MyPaintDemoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Join：BEVEL"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    />
+                <com.example.paintdemo.line.view.LineJoinDemoView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    app:joinStyle="BEVEL"
+                    />
+            </LinearLayout>
+
+        </com.example.paintdemo.MyPaintDemoLinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

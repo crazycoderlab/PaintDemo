@@ -18,8 +18,6 @@ interface BaseDrawActionInterface {
 
 abstract class BaseDrawActionView : View, BaseDrawActionInterface {
 
-    private var isOpen = false
-
     constructor(context: Context) : super(context, null, 0)
 
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs, 0)
@@ -28,37 +26,38 @@ abstract class BaseDrawActionView : View, BaseDrawActionInterface {
         context,
         attrs,
         defStyleAttr
-    )
+    ){
+        initAll(attrs,defStyleAttr,false)
+    }
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, isOpen: Boolean) : super(
         context,
         attrs,
         defStyleAttr
     ) {
-        this.isOpen = isOpen
+        initAll(attrs,defStyleAttr,isOpen)
     }
 
     protected val paint = Paint()
-
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
-        if (isOpen) {
-            openCharacteristic()
-        }
-        initPaint()
-    }
-
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        Log.v("BaseDrawActionView", "onDetachedFromWindow")
-    }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec), dpToPx(150f).toInt())
     }
 
+    private fun initAll(attrs: AttributeSet?, defStyleAttr: Int,isOpen: Boolean){
+        initSpecialConfig(attrs,defStyleAttr)
+        if (isOpen) {
+            openCharacteristic()
+        }
+        initPaint()
+    }
+
     protected open fun initPaint() {
+
+    }
+
+    protected open fun initSpecialConfig(attrs: AttributeSet?, defStyleAttr: Int){
 
     }
 

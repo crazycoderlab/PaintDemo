@@ -15,4 +15,20 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="LineCapDemoView">
+        <attr name="capStyle" format="integer">
+            <enum name="BUTT" value="0"/>
+            <enum name="ROUND" value="1"/>
+            <enum name="SQUARE" value="2"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="LineJoinDemoView">
+        <attr name="joinStyle" format="integer">
+            <enum name="MITER" value="0"/>
+            <enum name="ROUND" value="1"/>
+            <enum name="BEVEL" value="2"/>
+        </attr>
+    </declare-styleable>
+
 </resources>
