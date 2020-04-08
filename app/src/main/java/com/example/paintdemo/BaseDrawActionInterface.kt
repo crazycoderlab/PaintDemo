@@ -4,37 +4,53 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Paint
 import android.util.AttributeSet
+import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.Space
 import android.widget.TextView
 
 interface BaseDrawActionInterface {
     fun openCharacteristic()
 }
 
-abstract class BaseDrawActionView  : View,BaseDrawActionInterface{
+abstract class BaseDrawActionView : View, BaseDrawActionInterface {
 
+    private var isOpen = false
 
-    constructor(context: Context): super(context,null,0)
+    constructor(context: Context) : super(context, null, 0)
 
-    constructor(context: Context,attrs: AttributeSet?): super(context,attrs,0)
+    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs, 0)
 
-    constructor(context: Context,attrs: AttributeSet?,defStyleAttr: Int): super(context,attrs,defStyleAttr)
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    )
 
-    constructor(context: Context,attrs: AttributeSet?,defStyleAttr: Int, isOpen: Boolean): super(context,attrs,defStyleAttr){
-        if(isOpen) {
-            openCharacteristic()
-        }
-        initPaint()
+    constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int, isOpen: Boolean) : super(
+        context,
+        attrs,
+        defStyleAttr
+    ) {
+        this.isOpen = isOpen
     }
 
     protected val paint = Paint()
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
+        if (isOpen) {
+            openCharacteristic()
+        }
+        initPaint()
+    }
 
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        Log.v("BaseDrawActionView", "onDetachedFromWindow")
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -42,7 +58,7 @@ abstract class BaseDrawActionView  : View,BaseDrawActionInterface{
         setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec), dpToPx(150f).toInt())
     }
 
-    protected open fun initPaint(){
+    protected open fun initPaint() {
 
     }
 
@@ -53,19 +69,29 @@ class MyPaintDemoLinearLayout @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
     var inflateChildViewClassName: String? = null
-    var demoTypeName: String? = null
+    var openInfo: String? = null
+    var unOpenInfo: String? = null
 
     init {
         orientation = VERTICAL
         gravity = Gravity.CENTER
 
-        val typeArray = context.obtainStyledAttributes(attrs,R.styleable.MyPaintDemoLinearLayout,defStyleAttr,0)
+        val typeArray = context.obtainStyledAttributes(
+            attrs,
+            R.styleable.MyPaintDemoLinearLayout,
+            defStyleAttr,
+            0
+        )
 
         inflateChildViewClassName =
             typeArray.getString(R.styleable.MyPaintDemoLinearLayout_inflateChildViewClassName)
 
-        typeArray.getString(R.styleable.MyPaintDemoLinearLayout_demoTypeName)?.let {
-            demoTypeName = it
+        typeArray.getString(R.styleable.MyPaintDemoLinearLayout_openInfo)?.let {
+            openInfo = it
+        }
+
+        typeArray.getString(R.styleable.MyPaintDemoLinearLayout_unOpenInfo)?.let {
+            unOpenInfo = it
         }
 
         typeArray.recycle()
@@ -73,39 +99,91 @@ class MyPaintDemoLinearLayout @JvmOverloads constructor(
         addChildView()
     }
 
-    private fun addChildView(){
-        inflateChildViewClassName?.run {
+    private fun addChildView() {
+        inflateChildViewClassName?.let {
             val childViewClass = Class.forName(inflateChildViewClassName!!)
-            val constructor = childViewClass.getDeclaredConstructor(Context::class.java,AttributeSet::class.java,Int::class.java,Boolean::class.java)
-            val childOpen = constructor.newInstance(context,null,0,true) as View
-            val childUnOpen = constructor.newInstance(context,null,0,false) as View
+            val constructor = childViewClass.getDeclaredConstructor(
+                Context::class.java,
+                AttributeSet::class.java,
+                Int::class.java,
+                Boolean::class.java
+            )
 
-            val layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT)
-            layoutParams.topMargin = 20
-            childOpen.layoutParams = layoutParams
-            childUnOpen.layoutParams = layoutParams
+            val layoutParamsWrapContent = LayoutParams(0, LayoutParams.WRAP_CONTENT)
+            layoutParamsWrapContent.weight = 1f
 
-            addView(childOpen)
-            addView(childUnOpen)
+            val layoutParamsChildView = LayoutParams(0, LayoutParams.WRAP_CONTENT)
+            layoutParamsChildView.weight = 2f
+
+            val childOpenLinearLayout = LinearLayout(context)
+            childOpenLinearLayout.orientation = HORIZONTAL
+            childOpenLinearLayout.gravity = Gravity.CENTER_VERTICAL
+            val childOpen = constructor.newInstance(context, null, 0, true) as View
+            val childOpenTextView = TextView(context)
+            childOpenTextView.layoutParams = layoutParamsWrapContent
+            childOpenTextView.setPadding(
+                dpToPx(15f).toInt(),
+                dpToPx(15f).toInt(),
+                dpToPx(15f).toInt(),
+                dpToPx(15f).toInt()
+            )
+            childOpenTextView.textSize = 16f
+            childOpenTextView.gravity = Gravity.CENTER
+            if (!openInfo.isNullOrEmpty()) {
+                childOpenTextView.text = openInfo
+            } else {
+                childOpenTextView.text = "开启效果"
+            }
+            childOpenLinearLayout.addView(childOpenTextView)
+            childOpen.layoutParams = layoutParamsChildView
+            childOpenLinearLayout.addView(childOpen)
+
+            val childUnOpenLinearLayout = LinearLayout(context)
+            childUnOpenLinearLayout.orientation = HORIZONTAL
+            childUnOpenLinearLayout.gravity = Gravity.CENTER_VERTICAL
+            val childUnOpen = constructor.newInstance(context, null, 0, false) as View
+            val childUnOpenTextView = TextView(context)
+            childUnOpenTextView.layoutParams = layoutParamsWrapContent
+            childUnOpenTextView.setPadding(
+                dpToPx(15f).toInt(),
+                dpToPx(15f).toInt(),
+                dpToPx(15f).toInt(),
+                dpToPx(15f).toInt()
+            )
+            childUnOpenTextView.gravity = Gravity.CENTER
+            childUnOpenTextView.textSize = 16f
+            if (!unOpenInfo.isNullOrEmpty()) {
+                childUnOpenTextView.text = unOpenInfo
+            } else {
+                childUnOpenTextView.text = "未开效果"
+            }
+            childUnOpenLinearLayout.addView(childUnOpenTextView)
+            childUnOpen.layoutParams = layoutParamsChildView
+            childUnOpenLinearLayout.addView(childUnOpen)
+
+            addView(childOpenLinearLayout)
+            addView(childUnOpenLinearLayout)
+
+            val line = Space(context)
+            line.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, dpToPx(10f).toInt())
+            addView(line)
         }
-
-        demoTypeName?.run {
-            val titleTextView = TextView(context)
-            val layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT)
-            titleTextView.text = demoTypeName
-            titleTextView.textSize = 20f
-            titleTextView.layoutParams = layoutParams
-            addView(titleTextView,0)
-        }
-
     }
 
 }
 
-fun dpToPx(dp: Float): Float{
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,dp, Resources.getSystem().displayMetrics)
+fun dpToPx(dp: Float): Float {
+    return TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        dp,
+        Resources.getSystem().displayMetrics
+    )
 }
 
-fun spToPx(sp: Float): Float{
-    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,sp, Resources.getSystem().displayMetrics)
+fun spToPx(sp: Float): Float {
+    return TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_SP,
+        sp,
+        Resources.getSystem().displayMetrics
+    )
 }

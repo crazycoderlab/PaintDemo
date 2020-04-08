@@ -13,7 +13,7 @@ class StyleDemoView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
-    isOpen: Boolean = false
+    isOpen: Boolean = true
 ) : BaseDrawActionView(context, attrs, defStyleAttr, isOpen) {
 
     private var styleType: Int = 0
@@ -25,7 +25,7 @@ class StyleDemoView @JvmOverloads constructor(
     }
 
     override fun initPaint() {
-        paint.strokeWidth = 15f
+        paint.strokeWidth = 65f
         paint.color = Color.RED
     }
 

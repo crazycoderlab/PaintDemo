@@ -10,59 +10,171 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="抗锯齿"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            />
+
         <com.example.paintdemo.MyPaintDemoLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:inflateChildViewClassName="com.example.paintdemo.basecharacteristic.view.AntiAliasDemoView"
-            app:demoTypeName="抗锯齿"
+            app:openInfo="打开抗锯齿"
+            app:unOpenInfo="关闭抗锯齿"
             />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="阴影效果-在绘制内容上方"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            />
         <com.example.paintdemo.MyPaintDemoLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:inflateChildViewClassName="com.example.paintdemo.basecharacteristic.view.MaskFilterDemoView"
-            app:demoTypeName="阴影效果——绘制内容上方"
+            app:openInfo="打开阴影"
+            app:unOpenInfo="关闭阴影"
             />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="绘制虚线"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            />
         <com.example.paintdemo.MyPaintDemoLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:inflateChildViewClassName="com.example.paintdemo.basecharacteristic.view.PathEffectDemoView"
-            app:demoTypeName="绘制虚线"
+            app:openInfo="添加PathEffect"
+            app:unOpenInfo="未加PathEffect"
             />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="阴影效果-在绘制内容下方"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            />
         <com.example.paintdemo.MyPaintDemoLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:inflateChildViewClassName="com.example.paintdemo.basecharacteristic.view.ShadowLayerDemoView"
-            app:demoTypeName="阴影效果-绘制内容下方"
+            app:openInfo="添加ShadowLayer"
+            app:unOpenInfo="不加ShadowLayer"
             />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="填充样式"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="10dp"
+            />
         <com.example.paintdemo.MyPaintDemoLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:demoTypeName="填充样式"
             >
 
-            <com.example.paintdemo.basecharacteristic.view.StyleDemoView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                />
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="不设置FillType"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    />
+                <com.example.paintdemo.basecharacteristic.view.StyleDemoView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    />
+            </LinearLayout>
 
-            <com.example.paintdemo.basecharacteristic.view.StyleDemoView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:styleType="stroke"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="FillType为stroke"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    />
+                <com.example.paintdemo.basecharacteristic.view.StyleDemoView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    app:styleType="stroke"
+                    />
+            </LinearLayout>
 
-            <com.example.paintdemo.basecharacteristic.view.StyleDemoView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:styleType="fill"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="FillType为fill"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    />
+                <com.example.paintdemo.basecharacteristic.view.StyleDemoView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    app:styleType="fill"
+                    />
+            </LinearLayout>
 
-            <com.example.paintdemo.basecharacteristic.view.StyleDemoView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:styleType="fillStroke"/>
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="FillType为fillAndStroke"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    />
+                <com.example.paintdemo.basecharacteristic.view.StyleDemoView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    app:styleType="fillStroke"
+                    />
+            </LinearLayout>
 
         </com.example.paintdemo.MyPaintDemoLinearLayout>
 
