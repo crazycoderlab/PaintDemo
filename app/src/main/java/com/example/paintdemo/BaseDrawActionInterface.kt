@@ -2,6 +2,7 @@ package com.example.paintdemo
 
 import android.content.Context
 import android.content.res.Resources
+import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.util.Log
@@ -46,11 +47,12 @@ abstract class BaseDrawActionView : View, BaseDrawActionInterface {
     }
 
     private fun initAll(attrs: AttributeSet?, defStyleAttr: Int,isOpen: Boolean){
+        Log.v("BaseDrawActionView","isOpen = $isOpen")
+        initPaint()
         initSpecialConfig(attrs,defStyleAttr)
         if (isOpen) {
             openCharacteristic()
         }
-        initPaint()
     }
 
     protected open fun initPaint() {
@@ -63,6 +65,21 @@ abstract class BaseDrawActionView : View, BaseDrawActionInterface {
 
 }
 
+abstract class BaseDrawTextView @JvmOverloads constructor(
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0,isOpen: Boolean = true
+) : BaseDrawActionView(context, attrs, defStyleAttr,isOpen) {
+
+    override fun initPaint() {
+        paint.textAlign = Paint.Align.CENTER
+        paint.textSize = spToPx(16f)
+    }
+
+    override fun onDraw(canvas: Canvas) {
+        canvas.drawText("Crazy Coder 安卓开发",width/2f,height/2f,paint)
+    }
+
+}
+
 class MyPaintDemoLinearLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
@@ -70,6 +87,7 @@ class MyPaintDemoLinearLayout @JvmOverloads constructor(
     var inflateChildViewClassName: String? = null
     var openInfo: String? = null
     var unOpenInfo: String? = null
+    var isAutoAddUnOpenChild: Boolean = true
 
     init {
         orientation = VERTICAL
@@ -92,6 +110,8 @@ class MyPaintDemoLinearLayout @JvmOverloads constructor(
         typeArray.getString(R.styleable.MyPaintDemoLinearLayout_unOpenInfo)?.let {
             unOpenInfo = it
         }
+
+        isAutoAddUnOpenChild = typeArray.getBoolean(R.styleable.MyPaintDemoLinearLayout_isAutoAddUnOpenChild,true)
 
         typeArray.recycle()
 
@@ -136,32 +156,33 @@ class MyPaintDemoLinearLayout @JvmOverloads constructor(
             childOpenLinearLayout.addView(childOpenTextView)
             childOpen.layoutParams = layoutParamsChildView
             childOpenLinearLayout.addView(childOpen)
-
-            val childUnOpenLinearLayout = LinearLayout(context)
-            childUnOpenLinearLayout.orientation = HORIZONTAL
-            childUnOpenLinearLayout.gravity = Gravity.CENTER_VERTICAL
-            val childUnOpen = constructor.newInstance(context, null, 0, false) as View
-            val childUnOpenTextView = TextView(context)
-            childUnOpenTextView.layoutParams = layoutParamsWrapContent
-            childUnOpenTextView.setPadding(
-                dpToPx(15f).toInt(),
-                dpToPx(15f).toInt(),
-                dpToPx(15f).toInt(),
-                dpToPx(15f).toInt()
-            )
-            childUnOpenTextView.gravity = Gravity.CENTER
-            childUnOpenTextView.textSize = 16f
-            if (!unOpenInfo.isNullOrEmpty()) {
-                childUnOpenTextView.text = unOpenInfo
-            } else {
-                childUnOpenTextView.text = "未开效果"
-            }
-            childUnOpenLinearLayout.addView(childUnOpenTextView)
-            childUnOpen.layoutParams = layoutParamsChildView
-            childUnOpenLinearLayout.addView(childUnOpen)
-
             addView(childOpenLinearLayout)
-            addView(childUnOpenLinearLayout)
+
+            if(isAutoAddUnOpenChild){
+                val childUnOpenLinearLayout = LinearLayout(context)
+                childUnOpenLinearLayout.orientation = HORIZONTAL
+                childUnOpenLinearLayout.gravity = Gravity.CENTER_VERTICAL
+                val childUnOpen = constructor.newInstance(context, null, 0, false) as View
+                val childUnOpenTextView = TextView(context)
+                childUnOpenTextView.layoutParams = layoutParamsWrapContent
+                childUnOpenTextView.setPadding(
+                    dpToPx(15f).toInt(),
+                    dpToPx(15f).toInt(),
+                    dpToPx(15f).toInt(),
+                    dpToPx(15f).toInt()
+                )
+                childUnOpenTextView.gravity = Gravity.CENTER
+                childUnOpenTextView.textSize = 16f
+                if (!unOpenInfo.isNullOrEmpty()) {
+                    childUnOpenTextView.text = unOpenInfo
+                } else {
+                    childUnOpenTextView.text = "未开效果"
+                }
+                childUnOpenLinearLayout.addView(childUnOpenTextView)
+                childUnOpen.layoutParams = layoutParamsChildView
+                childUnOpenLinearLayout.addView(childUnOpen)
+                addView(childUnOpenLinearLayout)
+            }
 
             val line = Space(context)
             line.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, dpToPx(10f).toInt())

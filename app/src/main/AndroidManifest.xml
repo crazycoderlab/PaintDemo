@@ -26,6 +26,9 @@
         <activity android:name=".color.ShaderDemoActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"/>
+        <activity android:name=".text.TextDemoActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"/>
     </application>
 
 </manifest>

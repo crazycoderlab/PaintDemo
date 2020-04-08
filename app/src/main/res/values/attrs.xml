@@ -5,6 +5,7 @@
         <attr name="inflateChildViewClassName" format="string"/>
         <attr name="openInfo" format="string"/>
         <attr name="unOpenInfo" format="string"/>
+        <attr name="isAutoAddUnOpenChild" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="StyleDemoView">
