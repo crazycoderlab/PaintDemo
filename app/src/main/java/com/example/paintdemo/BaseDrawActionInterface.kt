@@ -159,6 +159,9 @@ class MyPaintDemoLinearLayout @JvmOverloads constructor(
             addView(childOpenLinearLayout)
 
             if(isAutoAddUnOpenChild){
+                val line = Space(context)
+                line.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, dpToPx(10f).toInt())
+                addView(line)
                 val childUnOpenLinearLayout = LinearLayout(context)
                 childUnOpenLinearLayout.orientation = HORIZONTAL
                 childUnOpenLinearLayout.gravity = Gravity.CENTER_VERTICAL

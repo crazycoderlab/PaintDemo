@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <com.example.paintdemo.MyPaintDemoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:inflateChildViewClassName="com.example.paintdemo.bitmap.view.BitmapDitherDemoView"
+            app:openInfo="开启图像抖动"
+            app:unOpenInfo="未开启图像抖动"
+            />
+
+        <com.example.paintdemo.MyPaintDemoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:inflateChildViewClassName="com.example.paintdemo.bitmap.view.BitmapFilterBitmapDemoView"
+            app:openInfo="开启图像双线性过滤"
+            app:unOpenInfo="未开启图像双线性过滤"
+            />
+
+    </LinearLayout>
+
+</ScrollView>
