@@ -31,4 +31,19 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="ShaderDemoView">
+        <attr name="shaderType" format="integer">
+            <enum name="LinearGradient" value="1"/>
+            <enum name="SweepGradient" value="2"/>
+            <enum name="RadialGradient" value="3"/>
+            <enum name="BitmapShader" value="4"/>
+            <enum name="ComposeShader" value="5"/>
+        </attr>
+        <attr name="shaderMode" format="integer">
+            <enum name="CLAMP" value="0"/>
+            <enum name="REPEAT" value="1"/>
+            <enum name="MIRROR" value="2"/>
+        </attr>
+    </declare-styleable>
+
 </resources>
