@@ -51,4 +51,13 @@
         <attr name="blendMode" format="integer"/>
     </declare-styleable>
 
+    <declare-styleable name="MaskFilterDemoView">
+        <attr name="blurMode" format="integer">
+            <enum name="NORMAL" value="0"/>
+            <enum name="SOLID" value="1"/>
+            <enum name="OUTER" value="2"/>
+            <enum name="INNER" value="3"/>
+        </attr>
+    </declare-styleable>
+
 </resources>

@@ -14,14 +14,27 @@ class MaskFilterDemoView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,
-    isOpen: Boolean = false
+    isOpen: Boolean = true
 ) : BaseDrawActionView(context, attrs, defStyleAttr, isOpen) {
 
     private var bitmap: Bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(resources,R.drawable.img2),
         dpToPx(100f).toInt(),dpToPx(100f).toInt(),true)
 
+    var blurMode = 0
+    override fun initSpecialConfig(attrs: AttributeSet?, defStyleAttr: Int) {
+        val typeArray = context.obtainStyledAttributes(attrs,R.styleable.MaskFilterDemoView,defStyleAttr,0)
+        blurMode = typeArray.getInt(R.styleable.MaskFilterDemoView_blurMode,0)
+        typeArray.recycle()
+    }
+
     override fun openCharacteristic() {
-        paint.maskFilter = BlurMaskFilter(dpToPx(30f), BlurMaskFilter.Blur.NORMAL)
+        val blur = when(blurMode){
+            BlurMaskFilter.Blur.NORMAL.ordinal -> BlurMaskFilter.Blur.NORMAL
+            BlurMaskFilter.Blur.SOLID.ordinal -> BlurMaskFilter.Blur.SOLID
+            BlurMaskFilter.Blur.OUTER.ordinal -> BlurMaskFilter.Blur.OUTER
+            else -> BlurMaskFilter.Blur.INNER
+        }
+        paint.maskFilter = BlurMaskFilter(dpToPx(30f), blur)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
